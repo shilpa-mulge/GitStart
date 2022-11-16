@@ -1,6 +1,11 @@
 var form = document.getElementById('addForm');
 var itemList = document.getElementById('items');
 var filter = document.getElementById('filter');
+var bef=document.getElementById('btn')
+var inputType=document.createElement('input')
+inputType.className='form-control mr-2';
+inputType.id='item1'
+form.insertBefore(inputType,bef)
 
 // Form submit event
 form.addEventListener('submit', addItem);
@@ -15,13 +20,14 @@ function addItem(e){
 
   // Get input value
   var newItem = document.getElementById('item').value;
-
+  var newItem2=document.getElementById('item1').value;
   // Create new li element
   var li = document.createElement('li');
   // Add class
   li.className = 'list-group-item';
   // Add text node with input value
   li.appendChild(document.createTextNode(newItem));
+  li.appendChild(document.createTextNode(newItem2));
 
   // Create del button element
   var deleteBtn = document.createElement('button');
@@ -61,7 +67,7 @@ function filterItems(e){
   var items = itemList.getElementsByTagName('li');
   // Convert to an array
   Array.from(items).forEach(function(item){
-    var itemName = item.firstChild.textContent;
+    var itemName = item.textContent;
     if(itemName.toLowerCase().indexOf(text) != -1){
       item.style.display = 'block';
     } else {
