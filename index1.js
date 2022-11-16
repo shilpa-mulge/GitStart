@@ -1,6 +1,4 @@
-const a=document.getElementsByTagName('li')
-a[2].style.backgroundColor="green"
-for(var i=0;i<a.length;i++){
-    a[i].style.color="red"
-    a[i].style.fontWeight="bold"
-}
+const a=document.querySelector(".list-group-item:nth-child(2)")
+a.style.backgroundColor="green"
+const b=document.querySelector(".list-group-item:nth-child(3)")
+b.style.display="none"
