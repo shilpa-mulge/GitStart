@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <style>
+
+        body  {
+
+    
+
+          background-repeat: no-repeat;
+
+          background-size: cover;
+
+        }
+
+        </style>
+
+</head>
+
+<body>
+
+
+
+<h1 style="text-align:center">Book a call</h1>
+
+
+
+<h5 style="text-align:center">Book a call slot our representative will call you within 1hr of selected time</h5>
+
+<hr>
+
+<form style="text-align:center"  onsubmit="register(event)">
+
+    <label for="name">Name:</label><br>
+
+    <input type="text" id="name" name="Name"><br>
+
+  <label for="email">Email:</label><br>
+
+  <input type="text" id="email" name="Email"><br>
+
+  <input style="background-color:orange" type="submit" value="Get a call">
+
+</form>
+
+<Script>
+    function register(event){
+        event.preventDefault()
+        var name=event.target.Name.value;
+        var email=event.target.email.value;
+        let myobj={name:name, email:email}
+        let myobjSerialized=JSON.stringify(myobj)
+        localStorage.setItem('myobj',myobjSerialized)
+    }
+</Script>
+
+</body>
+
+</html>
+
