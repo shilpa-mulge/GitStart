@@ -47,6 +47,9 @@ editBtn.appendChild(document.createTextNode('edit'))
 
   // Append li to list
   itemList.appendChild(li);
+
+  //Storing into LocalStorage
+  localStorage.setItem('userInput',newItem)
 }
 
 // Remove item
