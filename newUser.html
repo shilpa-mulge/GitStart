@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body id="bdy">
 
 
 
@@ -47,14 +47,33 @@
 </form>
 
 <Script>
+       
     function register(event){
         event.preventDefault()
+
         var name=event.target.Name.value;
         var email=event.target.email.value;
         let myobj={name:name, email:email}
-        let myobjSerialized=JSON.stringify(myobj)
-        localStorage.setItem('myobj',myobjSerialized)
-    }
+      var serialization=JSON.stringify(myobj)
+        localStorage.setItem(myobj.email,serialization);
+        var list=document.createElement('li')
+        list.classNmae='list'
+        list.appendChild(document.createTextNode(myobj.name+" "+myobj.email))
+    var bdy=document.getElementById('bdy')
+    bdy.appendChild(list)
+
+    //create btn
+    var deleteBtn = document.createElement('button');
+    deleteBtn.appendChild(document.createTextNode('delete'));
+    var editBtn=document.createElement('button')
+    editBtn.style.border='solid 1px green' 
+    deleteBtn.style.border='solid 2px red'
+    editBtn.appendChild(document.createTextNode('edit'))
+    list.appendChild(editBtn)
+    list.appendChild(deleteBtn);
+   
+         }
+    
 </Script>
 
 </body>
