@@ -36,44 +36,75 @@
 
     <label for="name">Name:</label><br>
 
-    <input type="text" id="name" name="Name"><br>
+    <input type="text" id="name" name="Name" required><br>
 
   <label for="email">Email:</label><br>
 
-  <input type="text" id="email" name="Email"><br>
+  <input type="text" id="email" name="Email" required><br>
 
   <input style="background-color:orange" type="submit" value="Get a call">
 
 </form>
+<ul id="ullist"></ul>
 
 <Script>
-       
+  var bdy=document.getElementById('ullist')
+  //function
     function register(event){
         event.preventDefault()
-
         var name=event.target.Name.value;
         var email=event.target.email.value;
         let myobj={name:name, email:email}
+
+
+        //existing items remove from screen
+        if(localStorage.getItem(myobj.email)!==null){
+          var node=document.getElementById(myobj.email);
+          if(node){
+            node.remove()
+          }
+          
+        }
+
+
       var serialization=JSON.stringify(myobj)
         localStorage.setItem(myobj.email,serialization);
         var list=document.createElement('li')
         list.classNmae='list'
+        list.id=myobj.email
         list.appendChild(document.createTextNode(myobj.name+" "+myobj.email))
-    var bdy=document.getElementById('bdy')
+    var bdy=document.getElementById('ullist')
     bdy.appendChild(list)
 
-    //create btn
+    //create btns
     var deleteBtn = document.createElement('button');
     deleteBtn.appendChild(document.createTextNode('delete'));
     var editBtn=document.createElement('button')
     editBtn.style.border='solid 1px green' 
     deleteBtn.style.border='solid 2px red'
+    editBtn.id='btn'
     editBtn.appendChild(document.createTextNode('edit'))
     list.appendChild(editBtn)
     list.appendChild(deleteBtn);
-   
-         }
-    
+         
+        }//end of function
+
+
+     //event for delete
+   bdy.addEventListener('click',function(e){
+    e.preventDefault();
+    var li=e.target.parentElement;
+    var id=li.textContent
+    li.remove()
+    localStorage.removeItem(li.id)
+   });
+
+   //event for edit
+   bdy.addEventListener('click',function(e){
+        var li = e.target.parentElement;
+  li.remove()
+  
+   })
 </Script>
 
 </body>
